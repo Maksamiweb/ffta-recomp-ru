@@ -9822,3 +9822,11 @@ The adapter verifies source SHA-256, BPS SHA-256 and output SHA-256 before creat
 Local preparation against the verified clean dump produced the existing audit-1.26 ROM byte-for-byte. Android static identity/payload checks passed. The complete upstream Android/Python gates require POSIX tools and /tmp, so Windows failures require checking on Linux CI.
 
 Launcher follow-up: v2.1 uses the raygui backend, whose picker has no BPS control. The older launcher_seam ROM-patch fields are not a usable raygui UI. Removed that configuration and documented preparation through the verified local adapter for both platforms. The launcher target remains the translated ROM pin.
+
+## 2026-11-23 — private Russian Android build and device boot
+
+Built the host generator on Windows with LLVM-MinGW and CMake, then generated 63,156 functions from the verified audit-1.26 ROM plus emibios. Android NDK r28c, SDK 35, CMake 3.30.3, Gradle 8.11.1 and JDK 17 produced a private arm64 APK. Eight APK content checks and APK signature verification passed. Installed on a 23054RA19C / Android API 35 device.
+
+First boot exposed a private-build launcher regression: removing --no-launcher opened the desktop ROM picker, unavailable on Android, before run_game could load the already-staged ROM. Keep the mobile skip flag for private builds. Rebuilt and reinstalled; the native intro now renders, runtime reports cpu_backend=static-recompiled, approximately 59-60 presents/s and no observed dispatch misses. Full gameplay and save compatibility remain untested. The private APK, ROM-derived generated files and device evidence remain outside Git.
+
+The 20 device-free Android identity/payload checks passed locally; seven fake-device Bash gate tests cannot execute in this Windows environment. The initial Java compilation needed a user-launched shell because sandbox Windows path resolution failed; subsequent native-only rebuild succeeded locally. No SDK/system-wide Java installation was modified.

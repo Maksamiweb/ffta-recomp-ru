@@ -404,11 +404,9 @@ int ffta_main(int argc, char** argv) {
     // around it — the device gate and the suspend/resume lifecycle depend
     // on an unattended boot.
     #if defined(GBAGAME_BUNDLED_ROM)
-    // Private build with the ROM staged: drop the vacuous flag and boot.
-    // (Public builds stop at the #else below — skipping setup is only valid
-    // with a bundled ROM.)
-    args.erase(std::remove(args.begin(), args.end(), "--no-launcher"),
-               args.end());
+    // The Android setup activity already staged the bundled ROM. Keep
+    // --no-launcher so run_game consumes the staged TOML directly instead
+    // of opening the desktop first-boot ROM picker (unavailable on Android).
 #else
     // Public build: the ROM arrives through the setup flow (SAF import).
     // Boot only when the staged ROM is actually there (cwd is the app files
