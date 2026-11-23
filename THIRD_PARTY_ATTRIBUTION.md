@@ -159,3 +159,7 @@ and is not distributed with this repo.)
 ## Russian translation
 
 Russian game text, terminology, font adaptation and translation artwork by Maksami. Translation snapshot audit-1.26 and BPS preparation tooling originate from https://github.com/Maksamiweb/final-fantasy-tactics-advance-ru. The engine and recompilation are based on james2doyle/ffta-recomp v2.1. Existing project and component licenses continue to apply.
+
+## Maksami UI Sans bitmap adaptation
+
+The normal and compact Cyrillic text glyphs in src/ffta_readable_glyphs.h derive from Noto Sans (Copyright 2018 The Noto Project Authors, SIL Open Font License 1.1). The modified bitmap set is named Maksami UI Sans. Reference TTF files and SHA-256 pins are listed in translation/readable-font-sources.json; tools/generate_readable_font.py reproduces the rasterization. Retained Russian punctuation derives from the existing PT Sans translation font. Both font licenses are included under android/payload/readability/ and packaged into the APK. This font material remains under its respective OFL license rather than the code license.

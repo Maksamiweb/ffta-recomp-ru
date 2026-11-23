@@ -145,6 +145,7 @@ diffs/
 rom.cfg
 bios.cfg
 config.ini
+!android/payload/readability/config.ini
 keybinds.ini
 
 # -----------------------------------------------------------------------------

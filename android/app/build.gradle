@@ -37,7 +37,7 @@ ext.gbaGame = [
     saveFile      : "ffta_us.sav",
     saveSize      : 65536,
     orientation   : "landscape",
-    payloadVersion: "6",
+    payloadVersion: "8",
     setupNote     : "Выберите ROM с переводом audit-1.26. " +
                     "Долгое нажатие или касание тремя пальцами открывает настройки.",
     variant       : "final_fantasy_tactics_advance",
@@ -46,6 +46,7 @@ ext.gbaGame = [
         [from: new File(gameRoot, "bios/emibios_gba_bios.bin"), into: "bios"],
         [from: new File(gameRoot, "mods/preloaded"), into: "mods"],
         [from: new File(rootDir, "payload/mods"), into: "mods"],
+        [from: new File(rootDir, "payload/readability"), into: ""],
     ],
     gameRoot      : gameRoot,
     engineRoot    : engineRoot,

@@ -1,5 +1,16 @@
 # Android (FFTARecomp)
 
+## Russian text readability preset
+
+Fresh Russian installs seed a player-owned `config.ini` with LCD dithering
+and the pixel grid disabled, MMPX edge smoothing disabled, and sharp scaling
+enabled for fractional display sizes. The game-owned Maksami UI Sans adapter
+substitutes monochrome Noto Sans Cyrillic glyphs at the verified font-copy read
+sites. Both normal and compact profiles retain all existing advance widths.
+The ROM file and identity, line wrapping and save compatibility are unchanged. Existing player
+settings are preserved on upgrades. The Graphics menu exposes `Edge smoothing`
+and `Sharp scaling` so players can adjust the result.
+
 Status 2026-10-09: **playable on device, current engine re-verified** —
 skeleton, build, first boot, widescreen and the device gate are verified on
 a Xiaomi Mi 11 (Android 14/API 34), and the current engine (split-loop gap

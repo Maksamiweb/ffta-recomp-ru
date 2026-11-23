@@ -14,6 +14,7 @@
 #include "ffta_haptics_hook.h"
 #include "ffta_speed_boost.h"
 #include "ffta_ws_margin.h"
+#include "ffta_readable_font.h"
 #include "mobile_platform.h"
 
 #if defined(__ANDROID__)
@@ -103,6 +104,7 @@ std::uint32_t g_ws_frame_right = 0;
 // disable-all of entry hooks), so it re-arms the correctness guard and
 // clears our presentation state; the activation plugin opts back in below.
 static void ffta_mod_reset() {
+    g_runtime_bus_read_override = &ffta::readable_font_read;
     g_ws_authored_margin_layers = 0;
     g_ws_obj_native_clip = 0;
     g_ws_bg_x_provider = nullptr;

@@ -236,6 +236,9 @@ if(FFTA_BUILD_TESTS AND NOT ANDROID)
     target_include_directories(ffta_ws_margin_tests PRIVATE src)
     target_compile_options(ffta_ws_margin_tests PRIVATE -UNDEBUG)
     add_test(NAME ws_margin COMMAND ffta_ws_margin_tests)
+    add_executable(ffta_font_tests tests/unit/test_readable_font.cpp)
+    target_include_directories(ffta_font_tests PRIVATE src)
+    add_test(NAME readable_font COMMAND ffta_font_tests)
 
     # The HostWindow closed/delegation contracts, the backend-selection
     # predicate, the host-stack guard, the frame pacer and the raylib

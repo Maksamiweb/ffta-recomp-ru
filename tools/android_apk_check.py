@@ -211,6 +211,12 @@ def expected_payload():
     folded into payload/mods)."""
     config = build_config()
     expected = {
+        "assets/payload/config.ini":
+            REPO / "android/payload/readability/config.ini",
+        "assets/payload/OFL-Noto.txt":
+            REPO / "android/payload/readability/OFL-Noto.txt",
+        "assets/payload/OFL-PT-Sans.txt":
+            REPO / "android/payload/readability/OFL-PT-Sans.txt",
         "assets/payload/variants/%s/game.toml" % config["variant"]:
             REPO / "android/game_android.toml",
         "assets/payload/bios/%s" % config["bios_name"]:

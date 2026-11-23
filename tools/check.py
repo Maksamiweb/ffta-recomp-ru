@@ -72,7 +72,14 @@ def check_unit_cpp():
         return False, "build failed: " + b.stderr.strip()[-160:]
     r = run([str(REPO / "build/ffta_unit_tests")])
     line = (r.stdout.strip().splitlines() or [""])[-1]
-    return r.returncode == 0 and "PASS" in line, line
+    if r.returncode != 0 or "PASS" not in line:
+        return False, line
+    b = run(["cmake", "--build", "build", "--target", "ffta_font_tests"])
+    if b.returncode != 0:
+        return False, "font test build failed: " + b.stderr.strip()[-160:]
+    r = run([str(REPO / "build/ffta_font_tests")])
+    font_line = (r.stdout.strip().splitlines() or [""])[-1]
+    return r.returncode == 0 and "ALL PASS" in font_line, line + "; " + font_line
 
 
 def check_unit_py():
