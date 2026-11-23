@@ -45,10 +45,10 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent
 ANDROID = REPO / "android"
 ROM = REPO / "game.gba"
-ROM_SHA1 = "4ac05441f4de70a4ec3dd932116346c61b8783d9"
+ROM_SHA1 = "ff29faf0da37332e77524236f6966633ec51139d"
 BIOS = REPO / "bios/emibios_gba_bios.bin"
 BIOS_SHA1 = "0c0d404d16c6b55b3071aba714f82077da132f14"
-ROM_SIZE = 16777216
+ROM_SIZE = 18036544
 BIOS_SIZE = 16384
 GRADLE_MIN_JDK = (21, 21)  # Gradle 8.11.1: JDK 21 works; JDK 27 is too new
 ANDROID_SCAFFOLD = REPO / "gbarecompx/platform/android/cpp/CMakeLists.txt"

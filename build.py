@@ -28,7 +28,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent
 ROM = REPO / "game.gba"
-ROM_SHA1 = "4ac05441f4de70a4ec3dd932116346c61b8783d9"
+ROM_SHA1 = "ff29faf0da37332e77524236f6966633ec51139d"
 # The launch BIOS is the committed clean-room emibios (LGPL-3.0-or-later,
 # coolbho3k/emibios main @c4d5d71; issue #17) — repo material, staged with
 # the build, so users supply only the ROM. The retail Nintendo dump is no
@@ -138,8 +138,8 @@ def step_dumps():
     # a corrupted checkout fails here with a clear message, not deep in
     # the BIOS recompile.
     checks = [
-        (ROM, ROM_SHA1, 16777216, "ROM", "game.gba",
-         "place your own legally-dumped FFTA (USA) ROM at game.gba "
+        (ROM, ROM_SHA1, 18036544, "ROM", "game.gba",
+         "prepare audit-1.26 with tools/prepare_russian_rom.py "
          "(never commit or download it)"),
         (BIOS, BIOS_SHA1, 16384, "BIOS", "bios/emibios_gba_bios.bin",
          "restore the committed emibios binary from the repository "

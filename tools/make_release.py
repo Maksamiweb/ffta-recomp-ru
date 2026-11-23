@@ -483,7 +483,7 @@ def sweep_stage(stage, platform="linux"):
             except OSError as exc:
                 violations.append(f"unreadable file: {rel} ({exc})")
                 continue
-            if digest == ROM_SHA1:
+            if digest in (ROM_SHA1, "ff29faf0da37332e77524236f6966633ec51139d"):
                 violations.append(f"ROM material under disguised name: {rel}")
             if digest == RETAIL_BIOS_SHA1:
                 violations.append(f"retail BIOS dump material: {rel}")

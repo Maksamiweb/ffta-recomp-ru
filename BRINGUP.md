@@ -9812,3 +9812,11 @@ unchanged); `tools/check.py` 18/18 PASS; device log evidence in
 **Artifacts.** Names are `FFTARecomp-v2.1-{linux-x64.zip, linux-x86_64.AppImage,
 windows-x64.zip, android-arm64-v8a.apk}`; SHA-256 values are in
 `release-stage/SHA256SUMS-v2.1.txt` and the published release body.
+
+## 2026-11-23 — Maksami Russian adaptation, audit-1.26
+
+Started the Russian branch from v2.1 commit 43f129a91eb1ea560ca638b3304466463cd595b2 with its pinned framework submodule. Retargeted the source generator, runtime launcher, Android setup and widescreen catalog to the exact translated ROM SHA-1 ff29faf0da37332e77524236f6966633ec51139d (18,036,544 bytes). The clean USA input remains separately pinned for BPS preparation and the desktop source-ROM patch picker.
+
+The adapter verifies source SHA-256, BPS SHA-256 and output SHA-256 before creating game.gba. Native code generation, full native builds and gameplay acceptance remain pending. The current Windows host has neither a Linux build environment nor CMake/C++ build tools. Public materials contain authored translation text, metadata and source changes. BPS is a release attachment.
+
+Local preparation against the verified clean dump produced the existing audit-1.26 ROM byte-for-byte. Android static identity/payload checks passed. The complete upstream Android/Python gates require POSIX tools and /tmp, so Windows failures require checking on Linux CI.

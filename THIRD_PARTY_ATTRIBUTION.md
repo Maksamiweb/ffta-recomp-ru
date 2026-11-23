@@ -155,3 +155,7 @@ Documentation License 1.2** — full license text in
 of the repository is PolyForm Noncommercial 1.0.0. (The recovered
 string-tables dump is **not** included — it is ROM-extracted game text,
 and is not distributed with this repo.)
+
+## Russian translation
+
+Russian game text, terminology, font adaptation and translation artwork by Maksami. Translation snapshot audit-1.26 and BPS preparation tooling originate from https://github.com/Maksamiweb/final-fantasy-tactics-advance-ru. The engine and recompilation are based on james2doyle/ffta-recomp v2.1. Existing project and component licenses continue to apply.

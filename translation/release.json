@@ -1,0 +1,13 @@
+{
+  "translation": "Maksami audit-1.26",
+  "upstream_tag": "v2.1",
+  "upstream_commit": "43f129a91eb1ea560ca638b3304466463cd595b2",
+  "source_sha1": "4ac05441f4de70a4ec3dd932116346c61b8783d9",
+  "source_sha256": "43fc8204c6dceee58828aebc7af0c72eb807e99f35ad641c8bb0a4fa8b6edc19",
+  "source_size": 16777216,
+  "patch_sha256": "3c94b0a09f99dfc9845e3c045e0cf0c78ad24b2dd48b2e7c94434645d8646c8c",
+  "target_sha1": "ff29faf0da37332e77524236f6966633ec51139d",
+  "target_sha256": "51b50b198e094cfd0274908b89150a675c9a5c3f39ac408907da4ef049981a75",
+  "target_size": 18036544,
+  "native_build_verified": false
+}

@@ -9,7 +9,7 @@
 # § "2026-10-06 — Phase 0".
 
 [game]
-name = "Final Fantasy Tactics Advance"
+name = "Final Fantasy Tactics Advance — русский перевод"
 short_name = "final_fantasy_tactics_advance"
 default_region = "USA"
 
@@ -17,7 +17,7 @@ default_region = "USA"
 name = "Final Fantasy Tactics Advance (USA)"
 id = "AFXE"
 load_address = 0x08000000
-size = 0x01000000                # 16,777,216 bytes — matches file exactly
+size = 18036544                 # Maksami audit-1.26 translated image
 # The real BIOS hands off to the cart at 0x08000000 (runtime.cpp:2005
 # bios_hle_boot_skip(0x08000000); BIOS-mapped cart entry). Word at
 # 0x08000000 is `ea00002e  b 0x080000C0` (Phase 0 disassembly; confirmed by
@@ -34,8 +34,8 @@ static_resume_all = true        # IRQ/SWI may resume at any instruction boundary
 codegen_shards = 32
 
 [identity]
-sha1 = "4ac05441f4de70a4ec3dd932116346c61b8783d9"
-md5 = "cd99cdde3d45554c1b36fbeb8863b7bd"
+sha1 = "ff29faf0da37332e77524236f6966633ec51139d"
+md5 = "1a35ba59e7c781e954a20e6b5c154175"
 
 [bios]
 path = "bios/emibios_gba_bios.bin"
@@ -60,7 +60,7 @@ hle = true
 
 [rom]
 path = "game.gba"
-sha1 = "4ac05441f4de70a4ec3dd932116346c61b8783d9"
+sha1 = "ff29faf0da37332e77524236f6966633ec51139d"
 
 # Save type resolved empirically: ASCII signature "FLASH512_V130" at ROM
 # 0x0836CE28 (verified by direct byte inspection 2026-10-06; gba_scan

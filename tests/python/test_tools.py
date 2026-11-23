@@ -945,6 +945,8 @@ class PublishReleaseTests(unittest.TestCase):
             self.assertIn(hashlib.sha256(b"one").hexdigest(), text)
 
 
+from test_russian_translation import RussianPreparationTests, RussianIdentityTests
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)
 
