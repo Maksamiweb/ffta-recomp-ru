@@ -471,7 +471,7 @@ int ffta_main(int argc, char** argv) {
     // and menu latch provide; the engine polls speed_boost_requested() once
     // per input pump under the shared Assist-enable gate. Presentation-only
     // on desktop (the pill appears on touch activity, never for keyboard).
-    opts.host_overlay = &ffta::speed_boost_overlay;
+    opts.host_overlay = &ffta::presentation_overlay;
     opts.fast_forward_request = &ffta::speed_boost_requested;
 
     if (on_mobile) {

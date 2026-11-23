@@ -71,7 +71,8 @@ file(GLOB GAME_GENERATED_SOURCES CONFIGURE_DEPENDS
 # Both carry the FFTA-owned host code (launch wiring + speed pill).
 set(FFTA_HOST_SOURCES
     src/main.cpp
-    src/ffta_speed_boost.cpp)
+    src/ffta_speed_boost.cpp
+    src/ffta_ui_edges.cpp)
 if(ANDROID)
     add_library(main SHARED
         ${FFTA_HOST_SOURCES}

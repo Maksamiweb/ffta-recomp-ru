@@ -4,6 +4,8 @@
 // CHECK (not <cassert>): Release erases assert() via -DNDEBUG (the
 // vacuous-test trap, BRINGUP).
 #include "../../src/ffta_ws_margin.h"
+#include "../../src/ffta_ui_edges.h"
+#include <algorithm>
 
 #include <cstdint>
 #include <cstdio>
@@ -118,6 +120,66 @@ int run_ws_margin_tests() {
         WS_CHECK(ffta::ws_ui_gate_sample(104, 103) == -1);
         WS_CHECK(ffta::ws_ui_gate_sample(104, 343) == 0);   // last native px
         WS_CHECK(ffta::ws_ui_gate_sample(104, 344) == -1);  // first right margin
+    }
+
+    // Wide UI finishing uses visible regular-BG coverage, not scene IDs.
+    {
+        std::vector<std::uint8_t> io(0x400), vram(0x18000), pal(0x400), rgb(320 * 160 * 3);
+        auto put = [](auto& bytes, int off, unsigned value) {
+            bytes[off] = value & 255; bytes[off + 1] = value >> 8;
+        };
+        put(io, 0, 0x100); // BG0, regular mode, enabled
+        put(io, 8, 0x1000); // screenblock 16, charblock 0
+        put(pal, 2, 0x7fff);
+        for (int i = 0; i < 32; ++i) vram[32 + i] = 0x11; // opaque white tile 1
+        for (int ty = 2; ty < 6; ++ty) {
+            put(vram, 0x8000 + ty * 64, 1);
+            put(vram, 0x8000 + ty * 64 + 29 * 2, 1);
+        }
+        for (int y = 16; y < 48; ++y)
+            for (int x : {40, 279})
+                for (int c = 0; c < 3; ++c) rgb[(y * 320 + x) * 3 + c] = 255;
+        bool rows[160];
+        for (int side : {0, 1}) {
+            ffta::ui_edge_runs(io.data(), vram.data(), pal.data(), rgb.data(), 320, 40, side, rows);
+            for (int y = 0; y < 160; ++y) WS_CHECK(rows[y] == (y >= 16 && y < 48));
+        }
+        // Covered UI pixels cannot decorate the overlying scenery/OBJ.
+        std::fill(rgb.begin(), rgb.end(), 20);
+        ffta::ui_edge_runs(io.data(), vram.data(), pal.data(), rgb.data(), 320, 40, 0, rows);
+        for (bool row : rows) WS_CHECK(!row);
+        // A six-pixel glyph fragment is not a window edge.
+        for (int y = 16; y < 22; ++y)
+            for (int c = 0; c < 3; ++c) rgb[(y * 320 + 40) * 3 + c] = 255;
+        ffta::ui_edge_runs(io.data(), vram.data(), pal.data(), rgb.data(), 320, 40, 0, rows);
+        for (bool row : rows) WS_CHECK(!row);
+        // Transparent map entries do not create a full-height rail.
+        WS_CHECK(ffta::ui_edge_color(io.data(), vram.data(), pal.data(), 0, 0, 0) == -1);
+        // Native width remains completely undecorated.
+        ffta::ui_edge_runs(io.data(), vram.data(), pal.data(), rgb.data(), 240, 0, 0, rows);
+        for (bool row : rows) WS_CHECK(!row);
+        // Both flip bits and banked 4-bpp palette addressing are preserved.
+        vram[32] = 0x02; put(pal, (2 + 3 * 16) * 2, 0x1234);
+        put(vram, 0x8000, 1 | 0xC00 | 0x3000);
+        WS_CHECK(ffta::ui_edge_color(io.data(), vram.data(), pal.data(), 0, 7, 7) == 0x1234);
+        // 8-bpp uses the unbanked byte index.
+        put(io, 8, 0x1080); put(vram, 0x8000, 2);
+        vram[128] = 5; put(pal, 10, 0x4567);
+        WS_CHECK(ffta::ui_edge_color(io.data(), vram.data(), pal.data(), 0, 0, 0) == 0x4567);
+    }
+
+    {
+        std::vector<std::uint8_t> io(0x400), vram(0x18000), pal(0x400);
+        io[1] = 1; io[9] = 0x10; // BG0, tile map 0x8000
+        vram[0x8000] = 1;
+        for (int i = 32; i < 64; ++i) vram[i] = 0x11;
+        pal[2] = 0xff; pal[3] = 0x7f;
+        io[0x50] = 0x41; io[0x51] = 0x20; // alpha over backdrop
+        io[0x52] = io[0x53] = 8;
+        const std::uint8_t half_white[] = {132, 123, 132};
+        WS_CHECK(ffta::ui_edge_visible(io.data(), vram.data(), pal.data(), 0, 0, 0, half_white));
+        io[0x50] = 0;
+        WS_CHECK(!ffta::ui_edge_visible(io.data(), vram.data(), pal.data(), 0, 0, 0, half_white));
     }
 
     if (failures == 0) std::printf("ws_margin: ALL PASS\n");

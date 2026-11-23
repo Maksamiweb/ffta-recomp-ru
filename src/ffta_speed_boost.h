@@ -22,6 +22,7 @@ class HostOverlay;
 }  // namespace gbarecomp
 
 namespace ffta {
+void presentation_overlay(gbarecomp::HostOverlay* overlay);
 
 // Idle-hide mirrors the pad's configured 15 s (src/main.cpp
 // touch_pad_idle_hide_seconds): the pill shows only within this window after
