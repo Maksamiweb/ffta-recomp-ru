@@ -427,7 +427,7 @@ int ffta_main(int argc, char** argv) {
 #endif
 
     gbarecomp::RunOptions opts;
-    opts.builtin_game_name = "FFTA — русский перевод Maksami";
+    opts.builtin_game_name = "FFTA Recomp RU - Maksami";
     // Widescreen (W2/W3): validated capability — the trusted plugin
     // "ffta.widescreen" (mods/preloaded catalog, default-enabled) authors the
     // field margins from the guest's 512-wide rings; users opt in with
@@ -439,10 +439,6 @@ int ffta_main(int argc, char** argv) {
     opts.max_resize_view_width = 448;
     opts.extended_view_frame = ffta_ws_margin_policy;
     opts.builtin_rom_sha1 = "ff29faf0da37332e77524236f6966633ec51139d";
-    opts.launcher_enable_rom_patches = true;
-    opts.launcher_source_rom_sha1 = "4ac05441f4de70a4ec3dd932116346c61b8783d9";
-    opts.launcher_required_patch_sha1 = "ff29faf0da37332e77524236f6966633ec51139d";
-    opts.launcher_rom_patch_note = "Maksami audit-1.26";
     opts.launcher_region = "USA";
     opts.launcher_game_config = GBARECOMP_DEFAULT_GAME_CONFIG;
 

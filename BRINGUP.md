@@ -9820,3 +9820,5 @@ Started the Russian branch from v2.1 commit 43f129a91eb1ea560ca638b3304466463cd5
 The adapter verifies source SHA-256, BPS SHA-256 and output SHA-256 before creating game.gba. Native code generation, full native builds and gameplay acceptance remain pending. The current Windows host has neither a Linux build environment nor CMake/C++ build tools. Public materials contain authored translation text, metadata and source changes. BPS is a release attachment.
 
 Local preparation against the verified clean dump produced the existing audit-1.26 ROM byte-for-byte. Android static identity/payload checks passed. The complete upstream Android/Python gates require POSIX tools and /tmp, so Windows failures require checking on Linux CI.
+
+Launcher follow-up: v2.1 uses the raygui backend, whose picker has no BPS control. The older launcher_seam ROM-patch fields are not a usable raygui UI. Removed that configuration and documented preparation through the verified local adapter for both platforms. The launcher target remains the translated ROM pin.

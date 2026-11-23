@@ -27,7 +27,8 @@ The sequence was verified end-to-end from a fresh clone on 2026-10-08
   `toml++` sources. No system UI toolkit beyond OpenGL/X11 is required.
 - `uv` (recommended) or `python3 -m venv` for the harness venv.
 - The supported ROM revision: *Final Fantasy Tactics Advance* (USA, AFXE),
-  SHA-1 `4ac05441f4de70a4ec3dd932116346c61b8783d9`, 16,777,216 bytes —
+  with Maksami audit-1.26 applied,
+  SHA-1 `ff29faf0da37332e77524236f6966633ec51139d`, 18,036,544 bytes —
   pinned in [`game.toml`](../game.toml).
 - The launch BIOS is the bundled clean-room
   [emibios](../bios/README.md) build; no Nintendo BIOS dump is needed.
@@ -42,9 +43,9 @@ build-tools 35, CMake 3.30.3, NDK 28.2.13676358, and `adb`. See
    repo root:
 
    ```sh
-   git clone --recurse-submodules https://github.com/james2doyle/ffta-recomp.git
-   cd ffta-recomp
-   cp /path/to/ffta-usa.gba game.gba
+   git clone --recurse-submodules https://github.com/Maksamiweb/ffta-recomp-ru.git
+   cd ffta-recomp-ru
+   python3 tools/prepare_russian_rom.py --source /path/to/ffta-usa.gba --patch /path/to/FFTA-USA-RU-demo-1.26.bps
    ```
 
 2. Run the bootstrap:

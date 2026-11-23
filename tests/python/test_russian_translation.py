@@ -1,5 +1,4 @@
 import hashlib
-import importlib.util
 import json
 from pathlib import Path
 import sys
@@ -86,10 +85,6 @@ class RussianIdentityTests(unittest.TestCase):
         ):
             with self.subTest(filename=filename):
                 self.assertIn(sha, (REPO / filename).read_text(encoding="utf8"))
-        self.assertIn(
-            release["source_sha1"],
-            (REPO / "src/main.cpp").read_text(encoding="utf8"),
-        )
 
 
 if __name__ == "__main__":
